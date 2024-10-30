@@ -31,6 +31,21 @@ When a day passes, the pet behaves like this:
 
 Create a `cli.ts` Next to the server TS. Create a CliPrimaryAdapter which uses the PetServicePort to invoke the proper functions based on the arguments.
 
-## Task 4: Implement the missing features
+## Task 4: Connect the Clever JSON file store
+
+We have another library the Clever JSON File Store.
+
+With it you can:
+- create a new item
+- remove one or more items by providing a function to decide what to remove.
+- replace one or more items by providing a function to decide what to replace.
+- find one or more item by providing a function to decide what to include into the results.
+
+Create an adapter for this library and use it instead of the
+simple JSON file store.
+
+## Task 5: Implement the missing features
 
 - Implement the missing features for the Pet App in this architecture.
+
+
