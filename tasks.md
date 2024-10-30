@@ -6,7 +6,7 @@
 - The user can create a new pet.
 - The user can get the list of pets.
 - The user can get the status of one pet.
-- The user the user can feed a given pet.
+- The user the can feed a given pet.
 - The user can make older a pet of one day.
 
 When a day passes, the pet behaves like this:
@@ -16,3 +16,21 @@ When a day passes, the pet behaves like this:
 - If the pet's weight goes to zero, unfortunately it is dead.
 - When a pet is dead it is not possible to feed them or make it older.
 
+## Task 1: Refactor the code to Hexagonal Architecture
+
+- Define the primary and secondary ports.
+- Presentational components will be the primary adapters.
+- Data Access components will be the secondary adapters.
+- glue code will be in the server.ts
+
+## Task 2: Refactor the tests to not use physical JSON files
+
+- Create an in memory Pet Repository Adapter and use it in the tests.
+
+## Task 3: Add a cli interface for this app
+
+Create a `cli.ts` Next to the server TS. Create a CliPrimaryAdapter which uses the PetServicePort to invoke the proper functions based on the arguments.
+
+## Task 4: Implement the missing features
+
+- Implement the missing features for the Pet App in this architecture.
