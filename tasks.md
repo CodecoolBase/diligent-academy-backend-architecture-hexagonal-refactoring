@@ -23,6 +23,14 @@ When a day passes, the pet behaves like this:
 - Data Access components will be the secondary adapters.
 - glue code will be in the server.ts
 
+Hint: The first step is to define the interfaces for the ports. The architecture will hold your hands through these interfaces.
+
+Hint: The dir structure can help you a lot. The data-access dir's content belongs to logically the secondary adapters, the presentational dir contains the primary adapters.
+
+Hint: The primary adapters are using the primary ports through the interfaces. Therefore you need to pass the instance of the given interface to the adapter (as function or constructor args).
+
+Hint: The secondary adapters are used by the business logic through the secondary port's interfaces. Therefore the secondary adapters are implements the secondary ports' interface.
+
 ## Task 2: Refactor the tests to not use physical JSON files
 
 - Create an in memory Pet Repository Adapter and use it in the tests.
