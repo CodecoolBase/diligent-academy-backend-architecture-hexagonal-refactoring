@@ -5,3 +5,5 @@ export type Pet = {
   weight: number
   age: number,
 }
+
+export type CreatePet = Omit<Pet, 'id'>

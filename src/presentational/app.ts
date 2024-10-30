@@ -2,9 +2,10 @@ import fastify from 'fastify';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts'
 import cors from '@fastify/cors';
 import { PathLike } from 'node:fs';
-import { JsonFileStore } from './utils/json-file-store';
-import { Pet } from './business/pet-type';
-import { PetService } from './business/pet-service';
+import { JsonFileStore } from '../utils/json-file-store';
+import { Pet } from '../business/pet-type';
+import { PetService } from '../business/pet-service';
+import { postPetSchema } from './route-schemas';
 
 export default async function createApp(options = {}, dataFilePath: PathLike) {
   const app = fastify(options).withTypeProvider<JsonSchemaToTsProvider>()
@@ -12,16 +13,6 @@ export default async function createApp(options = {}, dataFilePath: PathLike) {
 
   const petStore = new JsonFileStore<Pet>(dataFilePath);
 
-  const postPetSchema = {
-    body: {
-      type: 'object',
-      properties: {
-        name: { type: 'string' },
-      },
-      required: ['name'],
-      additionalProperties: false
-    }
-  } as const
   app.post(
     '/pets',
     { schema: postPetSchema },
@@ -42,7 +33,8 @@ export default async function createApp(options = {}, dataFilePath: PathLike) {
   app.get(
     '/pets',
     async () => {
-      const pets = await petStore.read();
+      const petService = new PetService(petStore)
+      const pets = await petService.herdAll();
       return pets;
     }
   )
